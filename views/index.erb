@@ -1,0 +1,13 @@
+<html>
+  <head></head>
+  <body>
+    <h1>Glass artefacts</h1>
+    <%@glass_items.each do |item|%>
+    <div>
+      <h2><%=item['name']%></h2>
+      <h3><%=item['date']%></h3>
+      <img src=<%=item['image']%>>
+    </div>
+    <%end%>
+  </body>
+</html>

@@ -26,5 +26,6 @@ class Application < Sinatra::Base
     else 
       puts "bad req"
     end
+      return erb(:index)
   end
 end
