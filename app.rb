@@ -19,7 +19,7 @@ class Application < Sinatra::Base
         @glass_items << {
           'name' => item['objectType'],
           'date' => item['_primaryDate'],
-          'image' => item['_images']['_primary_thumbnail']
+          'imageID' => item['_primaryImageId']
         }
       end
       puts @glass_items
