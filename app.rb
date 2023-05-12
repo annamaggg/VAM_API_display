@@ -15,12 +15,14 @@ class Application < Sinatra::Base
     if response.code == 200
       data = response.parsed_response['records']
       data.each do |item|
-        @item_list << {
-          'name' => item['_primaryTitle'],
-          'type' => item['objectType'],
-          'date' => item['_primaryDate'],
-          'imageID' => item['_primaryImageId']
-        }
+        if item['_primaryImageId'] != "" && item['_primaryImageId'] != nil
+          @item_list << {
+            'name' => item['_primaryTitle'],
+            'type' => item['objectType'],
+            'date' => item['_primaryDate'],
+            'imageID' => item['_primaryImageId']
+          }
+        end
       end
     else 
       puts "bad request"
