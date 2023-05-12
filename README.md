@@ -9,6 +9,10 @@ languages: Ruby, HTML
 Gems: sinatra, webrick, rspec, httparty
 Server: rack-test
 
+<!-- add link to V&A API -->
+JSON visualiser: https://jsonviewer.stack.hu 
+<!-- excalladraw, figma, trello for planning -->
+
 ### Run the project
 
 ```shell
