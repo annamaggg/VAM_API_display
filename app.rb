@@ -23,7 +23,7 @@ class Application < Sinatra::Base
         }
       end
     else 
-      puts "bad req"
+      puts "bad request"
     end
     return erb(:index)
   end
@@ -39,6 +39,30 @@ class Application < Sinatra::Base
 
   get '/search/Amsterdam' do
     location_req('id_place=x28722')
+  end
+
+  get '/search/NewYork' do
+    location_req('id_place=x29030')
+  end
+
+  get '/search/Moscow' do
+    location_req('id_place=x32457')
+  end
+
+  get '/search/Paris' do
+    location_req('id_place=x29068')
+  end
+
+  get '/search/Sydney' do
+    location_req('id_place=x37347')
+  end
+
+  get '/search/CapeTown' do
+    location_req('id_place=x38584')
+  end
+
+  get '/search/Tokyo' do
+    location_req('id_place=x32204')
   end
 end
 #   get '/' do
