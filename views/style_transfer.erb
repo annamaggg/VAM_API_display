@@ -1,22 +1,28 @@
 <html>
   <head>
     <script src="https://cdn.jsdelivr.net/npm/p5@1.6.0/lib/p5.js"></script>
-    <script src="/p5.js"></script>
-    <script>
-      function setup() {
-        createCanvas(400, 400);
-        background(220);
+    <style>
+      #sketch-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 600px;
+        height: 600px;
+        margin: 20px auto;
+        border: 2px solid red;
       }
-
-      function draw() {
-        ellipse(mouseX, mouseY, 50, 50);
-      }
-    </script>
+    </style>
   </head>
   <body >
     <img id="original-image" src="https://upload.wikimedia.org/wikipedia/commons/0/0f/1665_Girl_with_a_Pearl_Earring.jpg" style="width: 200px"/><br>
     <img id="styled-image" src=""/>
-    <a ><h2>click me</h2></a>
-    <div class="sketchfab-embed-wrapper"> <iframe title="V&A Exhibition Road Entrance" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="https://sketchfab.com/models/034035e927c449a1b03b42375ff33bb3/embed"> </iframe> <p style="font-size: 13px; font-weight: normal; margin: 5px; color: #4A4A4A;"> <a href="https://sketchfab.com/3d-models/va-exhibition-road-entrance-034035e927c449a1b03b42375ff33bb3?utm_medium=embed&utm_campaign=share-popup&utm_content=034035e927c449a1b03b42375ff33bb3" target="_blank" rel="nofollow" style="font-weight: bold; color: #1CAAD9;"> V&A Exhibition Road Entrance </a> by <a href="https://sketchfab.com/blockworks?utm_medium=embed&utm_campaign=share-popup&utm_content=034035e927c449a1b03b42375ff33bb3" target="_blank" rel="nofollow" style="font-weight: bold; color: #1CAAD9;"> BlockWorks </a> on <a href="https://sketchfab.com?utm_medium=embed&utm_campaign=share-popup&utm_content=034035e927c449a1b03b42375ff33bb3" target="_blank" rel="nofollow" style="font-weight: bold; color: #1CAAD9;">Sketchfab</a></p></div>
+    <a><h2>click me</h2></a>
+    <img src="/anna.jpeg">
+    <div id="sketch-container"></div> 
+    
+    <script src="/abstract.js">
+
+    </script>
+    
   </body>
 </html>

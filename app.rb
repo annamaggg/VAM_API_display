@@ -9,8 +9,6 @@ class Application < Sinatra::Base
     register Sinatra::Reloader
   end
 
-  set :public_folder, File.dirname(__FILE__) + '/public'
-
   def location_req(param)
     @item_list = []
     response = HTTParty.get("https://api.vam.ac.uk/v2/objects/search?#{param}")
