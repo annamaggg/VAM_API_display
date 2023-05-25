@@ -67,6 +67,38 @@ class Application < Sinatra::Base
     location_req('id_place=x32204')
   end
 
+  # material
+
+  get '/search/Wood' do
+    location_req('id_material=AAT11914')
+  end
+
+  get '/search/Marble' do
+    location_req('id_material=AAT11443')
+  end
+
+  get '/search/Silver' do
+    location_req('id_material=AAT11029')
+  end
+
+  get '/search/Plastic' do
+    location_req('id_material=AAT14570')
+  end
+
+  get '/search/Gold' do
+    location_req('id_material=AAT11021')
+  end
+
+  get '/search/Bronze' do
+    location_req('id_material=AAT10957')
+  end
+
+  get '/search/Paper' do
+    location_req('id_material=AAT14109')
+  end
+
+
+
   get '/style-image' do 
     return erb(:style_transfer)
   end

@@ -29,3 +29,5 @@ $ rackup
 Use your browser to visit `http://localhost:9292` 
 
 
+copyright compliance:
+© Victoria and Albert Museum, London
