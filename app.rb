@@ -1,7 +1,7 @@
 require 'httparty'
 require 'sinatra/base'
 require 'sinatra/reloader'
-require 'sinatra/session'
+# require 'sinatra/session'
 require_relative 'lib/database_connection'
 require_relative 'lib/account_repository'
 require_relative 'lib/artefact_repository'
@@ -50,6 +50,38 @@ class Application < Sinatra::Base
 
     repo.create(account)
     return erb(:account_created)
+  end
+
+  get '/login' do 
+    return erb(:login)
+  end 
+
+  post '/login' do 
+    account_repo = AccountRepository.new
+    all_usernames = account_repo.usernames
+
+    if all_usernames.include? params[:username]
+
+      account = account_repo.find_by_username(params[:username])
+
+      if params[:passkey] == account.passkey
+        session.clear
+        session[:user_id] = account.id
+        @current_user = account.username
+        if session[:user_id] == nil
+          return "no session"
+        else
+          # redirect '/login_success'
+          erb(:login_success)
+        end
+      else
+        @error = "Password is incorrect, please try again"
+        erb(:login)
+      end
+    else 
+      @error = "Username does not exist"
+      erb(:login)
+    end
   end
 
   # get '/' do
