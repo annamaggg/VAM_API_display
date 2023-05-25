@@ -1,7 +1,6 @@
 require 'httparty'
 require 'sinatra/base'
 require 'sinatra/reloader'
-# require 'sinatra/session'
 require_relative 'lib/database_connection'
 require_relative 'lib/account_repository'
 require_relative 'lib/artefact_repository'
@@ -16,14 +15,16 @@ class Application < Sinatra::Base
     register Sinatra::Reloader
   end
 
-  def location_req(param)
-    @item_list = []
-    response = HTTParty.get("https://api.vam.ac.uk/v2/objects/search?#{param}")
+  def search_req(param)
+    item_list = []
+    puts "Search keyword: #{param}"
+    response = HTTParty.get("https://api.vam.ac.uk/v2/objects/search?q=\"#{param}\"")
+    puts "API request URL: #{response.request.uri.to_s}"
     if response.code == 200
       data = response.parsed_response['records']
       data.each do |item|
         if item['_primaryImageId'] != "" && item['_primaryImageId'] != nil
-          @item_list << {
+          item_list << {
             'name' => item['_primaryTitle'],
             'type' => item['objectType'],
             'date' => item['_primaryDate'],
@@ -34,7 +35,7 @@ class Application < Sinatra::Base
     else 
       puts "bad request"
     end
-    return erb(:index)
+    item_list
   end
 
   get '/' do 
@@ -86,6 +87,16 @@ class Application < Sinatra::Base
       @error = "Username does not exist"
       erb(:login)
     end
+  end
+
+  get '/search' do 
+    @item_list = []
+    return erb(:search)
+  end
+
+  post '/search' do
+    @item_list = search_req(params[:keyword])
+    return erb(:search)
   end
 
   # get '/' do

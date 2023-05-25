@@ -1,0 +1,35 @@
+<html>
+  <head>
+  </head>
+  <body>
+    <h1>Search artefacts by location</h1>
+    <a href="/search/London" ><h2>London</h2></a>
+    <a href="/search/Amsterdam" ><h2>Amsterdam</h2></a>
+    <a href="/search/NewYork" ><h2>New York</h2></a>
+    <a href="/search/Moscow" ><h2>Moscow</h2></a>
+    <a href="/search/Paris" ><h2>Paris</h2></a>
+    <a href="/search/CapeTown" ><h2>Cape Town</h2></a>
+    <a href="/search/Tokyo" ><h2>Tokyo</h2></a>
+
+    <h1>Search artefacts by material</h1>
+    <a href="/search/Wood" ><h2>Wood</h2></a>
+    <a href="/search/Marble" ><h2>Marble</h2></a>
+    <a href="/search/Silver" ><h2>Silver</h2></a>
+    <a href="/search/Plastic" ><h2>Plastic</h2></a>
+    <a href="/search/Gold" ><h2>Gold</h2></a>
+    <a href="/search/Bronze" ><h2>Bronze</h2></a>
+    <a href="/search/Paper" ><h2>Paper</h2></a>
+
+    <%if @item_list != nil%>
+      <%@item_list.each do |item|%>
+        <div>
+          <h2><%=item['name']%></h2>
+          <h2><%=item['type']%></h2>
+          <h3><%=item['date']%></h3>
+          <img src="https://framemark.vam.ac.uk/collections/<%=item['imageID']%>/full/!800,800/0/native.jpg">
+        </div>
+      <%end%>
+    <%end%>
+
+  </body>
+</html>
