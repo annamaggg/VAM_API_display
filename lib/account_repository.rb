@@ -36,4 +36,18 @@ class AccountRepository
     result = DatabaseConnection.exec_params(sql, [account.username, account.email, account.passkey])
     return result
   end
+
+  def find_by_username(username)
+    sql = 'SELECT id, username, email, passkey FROM accounts WHERE username = $1;'
+      params = [username]
+      result = DatabaseConnection.exec_params(sql, params).first
+
+      account = Account.new
+      account.id = result['id'].to_i
+      account.username = result['username']
+      account.email = result['email']
+      account.passkey = result['passkey']
+      
+      return account
+  end
 end

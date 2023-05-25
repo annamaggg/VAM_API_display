@@ -36,5 +36,13 @@ describe AccountRepository do
       expect(repo.all.length).to eq(3)
       expect(repo.all.last.username).to eq('tommag')
       expect(repo.all.last.passkey).to eq('pass3')
-  end
+    end
+
+    it "finds an account by username" do
+      repo = AccountRepository.new
+      account = repo.find_by_username('AM')
+      expect(account.username).to eq('AM')
+      expect(account.email).to eq('annamag@email.com')
+      expect(account.passkey).to eq('pass1')
+    end
 end
