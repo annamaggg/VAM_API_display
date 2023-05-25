@@ -18,6 +18,13 @@ describe AccountRepository do
       expect(repo.all.last.username).to eq('GB')
     end
 
+    it "returns a list of all usernames" do
+      repo = AccountRepository.new
+      expect(repo.usernames.length).to eq(2)
+      expect(repo.usernames[0]).to eq('AM')
+      expect(repo.usernames[1]).to eq('GB')
+    end
+
     it "creates an account" do 
       repo = AccountRepository.new
       account = Account.new

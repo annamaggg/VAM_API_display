@@ -1,8 +1,15 @@
 require 'httparty'
 require 'sinatra/base'
 require 'sinatra/reloader'
+require 'sinatra/session'
+require_relative 'lib/database_connection'
+require_relative 'lib/account_repository'
+require_relative 'lib/artefact_repository'
+
+DatabaseConnection.connect('my_va_test')
 
 class Application < Sinatra::Base
+  enable :sessions
   # This allows the app code to refresh
   # without having to restart the server.
   configure :development do
@@ -30,10 +37,25 @@ class Application < Sinatra::Base
     return erb(:index)
   end
 
-  get '/' do
-    @item_list = []
-    return erb(:index)
+  get '/signup' do
+    return erb(:signup)
   end
+
+  post '/signup' do
+    repo = AccountRepository.new
+    account = Account.new
+    account.username = params[:username]
+    account.email = params[:email]
+    account.passkey = params[:passkey]
+
+    repo.create(account)
+    return erb(:account_created)
+  end
+
+  # get '/' do
+  #   @item_list = []
+  #   return erb(:index)
+  # end
 
   get '/search/London' do
     location_req('q_place_name=London')

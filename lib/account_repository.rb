@@ -15,7 +15,20 @@ class AccountRepository
         account.passkey = item['passkey']
         accounts << account
       end
+
       return accounts
+  end
+
+  def usernames 
+    sql = 'SELECT * FROM accounts;'
+    results = DatabaseConnection.exec_params(sql, [])
+
+    usernames = []
+    results.each do |item|
+      usernames << item['username']
+    end
+
+    return usernames
   end
 
   def create(account)
