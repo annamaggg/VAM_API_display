@@ -1,5 +1,11 @@
 <html>
   <head>
+  <style>
+    .image-container {
+      width: 700px;
+      overflow-x: scroll;
+    }
+  </style>
   </head>
   <body>
     <h1>Search the archive</h1>
@@ -8,6 +14,7 @@
       <input type="submit" name="Search"><br>
     </form>
 
+    <div class="image-container">
     <%if @item_list != nil%>
       <%@item_list.each do |item|%>
         <div>
@@ -15,9 +22,16 @@
           <h2><%=item['type']%></h2>
           <h3><%=item['date']%></h3>
           <img src="https://framemark.vam.ac.uk/collections/<%=item['imageID']%>/full/!800,800/0/native.jpg">
+          <form action="/add-to-collection" method="POST">
+            <input type="hidden" name="name" value="<%= item['name'] %>">
+            <input type="hidden" name="type" value="<%= item['type'] %>">
+            <input type="hidden" name="date" value="<%= item['date'] %>">
+            <input type="hidden" name="imageID" value="<%= item['imageID'] %>">
+            <input type="submit" value="Add to my collection">
+          </form>
         </div>
       <%end%>
     <%end%>
-
+  </div>
   </body>
 </html>

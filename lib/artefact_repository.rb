@@ -21,4 +21,10 @@ class ArtefactRepository
 
       return artefacts
   end 
+
+  def add_artefact(artefact)
+    sql = 'INSERT INTO artefacts (title, time_period, object_type, image_id, account_id) VALUES ($1, $2, $3, $4, $5)'
+    result = DatabaseConnection.exec_params(sql, [artefact.title, artefact.time_period, artefact.object_type, artefact.image_id, artefact.account_id])
+    return result
+  end
 end

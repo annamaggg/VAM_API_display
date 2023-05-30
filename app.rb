@@ -17,9 +17,7 @@ class Application < Sinatra::Base
 
   def search_req(param)
     item_list = []
-    puts "Search keyword: #{param}"
     response = HTTParty.get("https://api.vam.ac.uk/v2/objects/search?q=\"#{param}\"")
-    puts "API request URL: #{response.request.uri.to_s}"
     if response.code == 200
       data = response.parsed_response['records']
       data.each do |item|
@@ -72,7 +70,11 @@ class Application < Sinatra::Base
       if params[:passkey] == account.passkey
         session.clear
         session[:user_id] = account.id
+        puts "session userid: #{session[:user_id]}"
+        @current_user_id = account.id
+        puts "current userid: #{@current_user_id}"
         @current_user = account.username
+        puts "current user: #{@current_user}"
         if session[:user_id] == nil
           return "no session"
         else
@@ -89,6 +91,17 @@ class Application < Sinatra::Base
     end
   end
 
+  get '/logout' do
+    return erb(:logout)
+  end
+
+  post '/logout' do
+    session.clear
+    @current_user_id = nil
+    @current_user = nil
+    return erb(:login)
+  end
+
   get '/search' do 
     @item_list = []
     return erb(:search)
@@ -96,6 +109,21 @@ class Application < Sinatra::Base
 
   post '/search' do
     @item_list = search_req(params[:keyword])
+    return erb(:search)
+  end
+
+  post '/add-to-collection' do
+    if session[:user_id] != nil 
+    artefact_repo = ArtefactRepository.new
+    artefact = Artefact.new
+    artefact.title = params[:name]
+    artefact.object_type = params[:type]
+    artefact.time_period = params[:date]
+    artefact.image_id = params[:imageID]
+    artefact.account_id = session[:user_id]
+
+    artefact_repo.add_artefact(artefact)
+    end
     return erb(:search)
   end
 
