@@ -70,11 +70,7 @@ class Application < Sinatra::Base
       if params[:passkey] == account.passkey
         session.clear
         session[:user_id] = account.id
-        puts "session userid: #{session[:user_id]}"
-        @current_user_id = account.id
-        puts "current userid: #{@current_user_id}"
         @current_user = account.username
-        puts "current user: #{@current_user}"
         if session[:user_id] == nil
           return "no session"
         else
@@ -97,18 +93,28 @@ class Application < Sinatra::Base
 
   post '/logout' do
     session.clear
-    @current_user_id = nil
-    @current_user = nil
     return erb(:login)
   end
 
   get '/search' do 
-    @item_list = []
+    if params[:keyword]
+      session[:latest_keyword] = params[:keyword]
+    end
+  
+    if session[:latest_keyword] != nil
+      @item_list = search_req(session[:latest_keyword])
+    else
+      @item_list = []
+    end
     return erb(:search)
   end
 
   post '/search' do
+    
+    session[:latest_keyword] = params[:keyword]
+    
     @item_list = search_req(params[:keyword])
+    
     return erb(:search)
   end
 
@@ -124,7 +130,8 @@ class Application < Sinatra::Base
 
     artefact_repo.add_artefact(artefact)
     end
-    return erb(:search)
+    
+    redirect "/search?keyword=#{session[:latest_keyword]}"
   end
 
   # get '/' do
