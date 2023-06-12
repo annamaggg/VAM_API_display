@@ -120,18 +120,26 @@ class Application < Sinatra::Base
 
   post '/add-to-collection' do
     if session[:user_id] != nil 
-    artefact_repo = ArtefactRepository.new
-    artefact = Artefact.new
-    artefact.title = params[:name]
-    artefact.object_type = params[:type]
-    artefact.time_period = params[:date]
-    artefact.image_id = params[:imageID]
-    artefact.account_id = session[:user_id]
+      artefact_repo = ArtefactRepository.new
+      artefact = Artefact.new
+      artefact.title = params[:name]
+      artefact.object_type = params[:type]
+      artefact.time_period = params[:date]
+      artefact.image_id = params[:imageID]
+      artefact.account_id = session[:user_id]
 
-    artefact_repo.add_artefact(artefact)
+      artefact_repo.add_artefact(artefact)
     end
     
     redirect "/search?keyword=#{session[:latest_keyword]}"
+  end
+
+  get '/my-collection' do
+    if session[:user_id] != nil 
+      artefact_repo = ArtefactRepository.new
+      @my_artefacts = artefact_repo.artefacts_by_account_id(session[:user_id])
+      return erb(:my_collection)
+    end
   end
 
   # get '/' do

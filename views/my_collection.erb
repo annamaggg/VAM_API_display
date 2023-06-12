@@ -1,0 +1,21 @@
+<html>
+  <head>
+  </head>
+  <body >
+    <div>
+      <h1>My Collection</h1>
+    </div> 
+    <div class="image-container">
+    <%if @my_artefacts != nil%>
+      <%@my_artefacts.each do |item|%>
+        <div>
+          <h2><%=item.title%></h2>
+          <h2><%=item.object_type%></h2>
+          <h3><%=item.time_period%></h3>
+          <img src="https://framemark.vam.ac.uk/collections/<%=item.image_id%>/full/!800,800/0/native.jpg">
+        </div>
+      <%end%>
+    <%end%>
+  </div>
+  </body>
+</html>
