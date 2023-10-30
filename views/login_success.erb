@@ -1,18 +1,54 @@
 <html>
   <head>
+    <style>
+      .icon {
+        width: 120px;
+        height: auto;
+        max-width: none;
+        padding: 60px;
+      }
+      .button {
+        border: none;
+        text-decoration: none;
+        color: black;
+        position: absolute;
+        bottom: 60;
+        font-size: 20px;
+        background: none;
+      }
+      .navbar {
+        width: 300px;
+        height: 100%;
+        border-right: 2px solid lightgrey;
+        position: relative;
+      }
+      .nav-panels {
+        padding-left: 60px;
+      }
+      .nav-text {
+        display: block;
+        margin-bottom: 20px;
+        text-decoration: none;
+        color: black;
+        font-size: 20px;
+        font-family: Arial, sans-serif;
+      }
+      .nav-text.hover {
+        cursor: pointer;
+      }
+    </style>
   </head>
   <body >
-    <div>
-      <h1>Hi <%=@current_user%></h1>
-      <form class="form" action="/my-collection" method="GET"> 
-        <input type="submit" name="submit" value="My collection"><br>
-      </form>
-      <form class="form" action="/logout" method="POST">
-        <input type="submit" name="submit" value="Logout"><br>
-      </form>
-      <form class="form" action="/search" method="GET">
-        <input type="submit" name="submit" value="Search the collection"><br>
-      </form>
+    <div class="navbar">
+      <img class="icon" src='/myVA_icon2.png'/>
+      <div class="nav-panels">
+        <a class="nav-text" href="/login">Home</a><br>
+        <a class="nav-text" href="/my-collection">My collection</a><br>
+        <a class="nav-text" href="/search">Search the archive</a><br>
+        <form class="form" action="/logout" method="POST">
+          <input class="button" type="submit" name="submit" value="Logout"><br>
+        </form>
+      </div>
     </div> 
   </body>
 </html>

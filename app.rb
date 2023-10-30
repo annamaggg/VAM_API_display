@@ -56,7 +56,11 @@ class Application < Sinatra::Base
   end
 
   get '/login' do 
-    return erb(:login)
+    if session[:user_id] != nil
+      erb(:login_success)
+    else
+      return erb(:login)
+    end
   end 
 
   post '/login' do 
