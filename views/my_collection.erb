@@ -4,7 +4,7 @@
       body {
       margin: 0;
       padding: 0;
-      background-color: rgba(1, 0, 0, 0.04);
+      background: linear-gradient(90deg, lightgrey, white, white, rgb(239,239,239));
       }
       .container {
         display: flex;
@@ -18,11 +18,15 @@
       .logout-button {
         border: none;
         text-decoration: none;
-        color: black;
+        color: grey;
         position: absolute;
         bottom: 60;
         font-size: 20px;
         background: none;
+      }
+      .logout-button:hover {
+        cursor: pointer;
+        color: salmon;
       }
       .navbar {
         min-width: 300px;
@@ -32,6 +36,7 @@
         position: sticky;
         top: 0;
         z-index: 1;
+        background-color: white;
       }
       .nav-panels {
         padding-left: 60px;
@@ -43,9 +48,11 @@
         color: black;
         font-size: 20px;
         font-family: Arial, sans-serif;
+        transition: 0.4s;
       }
-      .nav-text.hover {
+      .nav-text:hover {
         cursor: pointer;
+        color: salmon;
       }
       .content {
         padding: 50px;
