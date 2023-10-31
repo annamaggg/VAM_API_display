@@ -2,36 +2,156 @@
   <head>
   <style>
     .image-container {
-      width: 700px;
-      overflow-x: scroll;
-    }
+        display: flex;
+        flex-wrap: wrap;
+      }
+          body {
+      margin: 0;
+      padding: 0;
+      background-color: rgba(1, 0, 0, 0.04);
+      }
+      .container {
+        display: flex;
+      }
+      .icon {
+        width: 120px;
+        height: auto;
+        max-width: none;
+        padding: 60px;
+      }
+      .logout-button {
+        border: none;
+        text-decoration: none;
+        color: black;
+        position: absolute;
+        bottom: 60;
+        font-size: 20px;
+        background: none;
+      }
+      .navbar {
+        min-width: 300px;
+        height: 100vh;
+        border-right: 2px solid lightgrey;
+        position: relative;
+        position: sticky;
+        top: 0;
+        z-index: 1;
+      }
+      .nav-panels {
+        padding-left: 60px;
+      }
+      .nav-text {
+        display: block;
+        margin-bottom: 20px;
+        text-decoration: none;
+        color: black;
+        font-size: 20px;
+        font-family: Arial, sans-serif;
+      }
+      .nav-text.hover {
+        cursor: pointer;
+      }
+      .content {
+        padding: 50px;
+        top: 0;
+      }
+      .art-img {
+        max-width: 50%;
+        border: 20px solid rgba(1, 0, 0, 0.84);
+        box-shadow: 4px 4px 4px 2px rgba(0, 0, 0, 0.5);
+      }
+      .image-container div {
+        flex-basis: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 30px 30px 60px 30px;
+      }
+      .img-description {
+        display: flex;
+        flex-direction: column;
+      }
+      h1 {
+        padding-left: 30px;
+      }
+      .search-bar {
+        padding-left: 30px;
+      }
+      .add-button {
+        border: none;
+        background-color: salmon;
+        color: white;
+        border-radius: 15px;
+        padding: 6px 10px;
+      }
+      .search-button {
+        border: none;
+        background-color: rgba(0, 0, 0, 0.8);
+        color: white;
+        border-radius: 15px;
+        padding: 4px 10px;
+      }
+      .search-box {
+        border: 1px solid black;
+        border-radius: 15px;
+        padding: 3px 10px;
+        width: 300px;
+      }
+      .img-description h2 {
+        margin: 0;
+        font-size: 25px;
+        padding-bottom: 5px;
+      }
+      .img-description h3 {
+        margin: 0;
+        font-weight: 50;
+        padding-bottom: 45px;
+      }
   </style>
   </head>
   <body>
-    <h1>Search the archive</h1>
-    <form class="form" action="/search" method="POST">
-      <input type="text" id="keyword" name="keyword">
-      <input type="submit" name="Search"><br>
-    </form>
-
-    <div class="image-container">
-    <%if @item_list != nil%>
-      <%@item_list.each do |item|%>
-        <div>
-          <h2><%=item['name']%></h2>
-          <h2><%=item['type']%></h2>
-          <h3><%=item['date']%></h3>
-          <img src="https://framemark.vam.ac.uk/collections/<%=item['imageID']%>/full/!800,800/0/native.jpg">
-          <form action="/add-to-collection" method="POST">
-            <input type="hidden" name="name" value="<%= item['name'] %>">
-            <input type="hidden" name="type" value="<%= item['type'] %>">
-            <input type="hidden" name="date" value="<%= item['date'] %>">
-            <input type="hidden" name="imageID" value="<%= item['imageID'] %>">
-            <input type="submit" value="Add to my collection">
+    <div class="container">
+      <div class="navbar">
+        <img class="icon" src='/myVA_icon2.png'/>
+        <div class="nav-panels">
+          <a class="nav-text" href="/login">Home</a><br>
+          <a class="nav-text" href="/my-collection">My collection</a><br>
+          <a class="nav-text" href="/search">Search the archive</a><br>
+          <form class="form" action="/logout" method="POST">
+            <input class="logout-button" type="submit" name="submit" value="Logout"><br>
           </form>
         </div>
-      <%end%>
-    <%end%>
-  </div>
+      </div>
+      <div class="content">
+        <h1>Search the archive</h1>
+        <form class="search-bar" action="/search" method="POST">
+          <input class="search-box" type="text" id="keyword" name="keyword">
+          <input class="search-button" type="submit" name="Search" value="Search"><br>
+        </form>
+
+        <div class="image-container">
+          <%if @item_list != nil%>
+            <%@item_list.each do |item|%>
+              <div>
+                <img class="art-img" src="https://framemark.vam.ac.uk/collections/<%=item['imageID']%>/full/!800,800/0/native.jpg">
+                <div class="img-description">  
+                  <h2><%=item['name']%></h2>
+                  <h2><%=item['type']%></h2>
+                  <h3><%=item['date']%></h3>
+                  <form action="/add-to-collection" method="POST">
+                  <input type="hidden" name="name" value="<%= item['name'] %>">
+                  <input type="hidden" name="type" value="<%= item['type'] %>">
+                  <input type="hidden" name="date" value="<%= item['date'] %>">
+                  <input type="hidden" name="imageID" value="<%= item['imageID'] %>">
+                  <input class="add-button" type="submit" value="Add to my collection">
+                </form>
+                </div>
+                
+              </div>
+            <%end%>
+          <%end%>
+        </div>
+      </div>
+    </div>
   </body>
 </html>
