@@ -36,6 +36,14 @@ class Application < Sinatra::Base
     item_list
   end
 
+  def randomiser()
+    req_params = ['gold', 'silver', 'wood', 'glass', 'marble', 'plastic', 'Queen Victoria', 'Prince Albert', 'book', 'poster', 'photograph', 'London', 'Tokyo', 'Amsterdam', 'New York', 'Moscow', 'Sydney', 'Paris']
+    rand_search = rand(0...(req_params.length - 1))
+    keyword = req_params[rand_search]
+    search_results = search_req(keyword)
+    return search_results.first(2)
+  end
+
   get '/' do 
     return erb(:index)
   end
@@ -98,6 +106,11 @@ class Application < Sinatra::Base
   post '/logout' do
     session.clear
     return erb(:login)
+  end
+
+  get '/login-success' do
+    @rand_item_list = randomiser()
+    return erb(:login_success)
   end
 
   get '/search' do 
