@@ -1,16 +1,66 @@
 <html>
   <head>
+    <style>
+      .body {
+        margin: 0;
+        padding: 0;
+        background: linear-gradient(90deg, lightgrey, white, white, rgb(239,239,239));
+      }
+      .container {
+        flex-basis: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding-top: 150px;
+      }
+      .label {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        font-family: Arial;
+        font-size: 15px;
+        text-decoration: none;
+        margin-bottom: 15px;
+      }
+      .icon {
+        width: 120px;
+        height: auto;
+        max-width: none;
+      }
+      .button {
+        border: none;
+        background-color: black;
+        color: white;
+        border-radius: 15px;
+        transition: background-color 0.4s;
+        margin-top: 20px;
+        text-decoration: none;
+        margin: 10px;
+        font-family: Arial;
+        font-weight: lighter;
+        padding: 3px 9px;
+      }
+      .button:hover {
+        background-color: salmon;
+        cursor: pointer;
+      }
+      p {
+        margin: 0;
+        padding: 0;
+      }
+    </style>
   </head>
   <body >
-    <div>
-      <h1>myV&A</h1>
-      <h2>A space to explore the V&A's archive of artefacts in an online gallery</h2>
-      <ul>
-        <li>Save artefacts to your own collection</li>
-        <li>Explore art interactively</li>
-      </ul>
-      <a href="/signup"><h3>Get started</h3></a>
-      <a href="/login"><h3>Login</h3></a>
+    <div class="container">
+      <img src="/myVA_icon2.png" class="icon"/>
+      <h2>A space to explore the V&A's archive of artefacts</h2>
+      <div class="label">
+        <p>Courtesy of the V&A, there are now over half a million records available for you to explore.</p>
+        <p>Search the archive, save them to your own collection and enjoy artefacts at random.</p>
+        <p>Who knows what you could find...</p>
+      </div>
+      <a href="/signup" class="button">Get started</a>
+      <a href="/login" class="button">Login</a>
     </div> 
   </body>
 </html>
