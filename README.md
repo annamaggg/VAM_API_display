@@ -9,10 +9,10 @@
 
 ## Tech
 
-Design: Excalladraw, Figma
-Planning: Trello
-languages: Ruby, HTML, JavaScript
-Gems: sinatra, webrick, rspec, httparty
+Design: Excalladraw, Figma<br/>
+Planning: Trello<br/>
+languages: Ruby, HTML, JavaScript<br/>
+Gems: sinatra, webrick, rspec, httparty<br/>
 Server: rack-test
 <br/>
 <br/>
