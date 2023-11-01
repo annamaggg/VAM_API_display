@@ -3,7 +3,7 @@
 MyV&A is a website where users can view collections from the V&A API archive. They can search the archive, view random artefacts and save artefacts to their own collection.
 This project was created to practice using APIs and formatting data with CSS styling.
 
-<img src="/Site-screenshot" style="width: 100vh; height: auto;"/>
+<img src="https://github.com/annamaggg/VAM_API_display/blob/main/public/Site-screenshot.png" width="861" alt="img"/>
 
 ### Tech
 
@@ -15,11 +15,11 @@ Server: rack-test
 
 #### Useful links
 
-V&A developer site: https://developers.vam.ac.uk
-V&A API guide: https://developers.vam.ac.uk/guide/v2/quick-start.html
-V&A API blog post: https://www.vam.ac.uk/blog/digital/va-launches-new-developer-api
-Introduction of integrating API data into websites: https://programminghistorian.org/en/lessons/introduction-to-populating-a-website-with-api-data
-JSON visualiser: https://jsonviewer.stack.hu 
+V&A developer site: https://developers.vam.ac.uk <br>
+V&A API guide: https://developers.vam.ac.uk/guide/v2/quick-start.html <br>
+V&A API blog post: https://www.vam.ac.uk/blog/digital/va-launches-new-developer-api <br>
+Introduction of integrating API data into websites: https://programminghistorian.org/en/lessons/introduction-to-populating-a-website-with-api-data <br>
+JSON visualiser: https://jsonviewer.stack.hu <br>
 
 ### Run the project
 
@@ -33,7 +33,7 @@ $ bundle install
 # Start the server
 $ rackup
 
-In your browser, visit `http://localhost:9292` 
+#In your browser, visit `http://localhost:9292` 
 ```
 
 
