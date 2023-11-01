@@ -61,8 +61,13 @@ class Application < Sinatra::Base
     account.email = params[:email]
     account.passkey = params[:passkey]
 
-    repo.create(account)
-    return erb(:account_created)
+    if params[:username] != "" || params[:email] != "" || params[:passkey] = !""
+      repo.create(account)
+      return erb(:login_success)
+    else
+      puts "insufficient entry"
+      redirect "/signup"
+    end
   end
 
   get '/login' do 
