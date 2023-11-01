@@ -37,7 +37,7 @@ class Application < Sinatra::Base
   end
 
   def randomiser()
-    req_params = ['gold', 'silver', 'wood', 'glass', 'marble', 'plastic', 'Queen Victoria', 'Prince Albert', 'book', 'poster', 'photograph', 'London', 'Tokyo', 'Amsterdam', 'New York', 'Moscow', 'Sydney', 'Paris']
+    req_params = ['gold', 'silver', 'wood', 'glass', 'marble', 'plastic', 'Queen Victoria', 'Prince Albert', 'city', 'book', 'drawing', 'sketch', 'painting','poster', 'photograph', 'film', 'music', 'London', 'Tokyo', 'Amsterdam', 'New York', 'Moscow', 'Sydney', 'Paris', 'blue', 'green', 'yellow', 'red', 'purple', 'white', 'black', 'orange', 'map', 'flower', 'home', '1', '2', '3', 'century', 'collection', 'model', 'print', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's']
     rand_search = rand(0...(req_params.length))
     keyword = req_params[rand_search]
     search_results = search_req(keyword)

@@ -4,6 +4,7 @@
       body {
       margin: 0;
       padding: 0;
+      background: linear-gradient(90deg, lightgrey, white, white, rgb(239,239,239));
       }
       .container {
         display: flex;
@@ -32,6 +33,10 @@
         height: 100vh;
         border-right: 2px solid lightgrey;
         position: relative;
+        position: sticky;
+        top: 0;
+        z-index: 1;
+        background-color: white;
       }
       .nav-panels {
         padding-left: 60px;
@@ -94,6 +99,27 @@
       .img-description h3 {
         margin: 0;
         font-weight: 50;
+        padding-bottom: 2px;
+      }
+      .add-button {
+        border: none;
+        background-color: black;
+        color: white;
+        border-radius: 15px;
+        padding: 6px 10px;
+        transition: background-color 0.4s;
+        margin-top: 50px;
+      }
+      .add-button:hover {
+        background-color: salmon;
+        cursor: pointer;
+      }
+      p {
+        padding: 5px 10px;
+        background-color: salmon;
+        color: white;
+        border-radius: 45px;
+        font-family: Arial;
       }
     </style>
   </head>
@@ -111,6 +137,8 @@
         </div>
       </div> 
       <div class="content">
+        <h1>Artefacts at random</h1>
+        
         <div class="image-container">
           <%if @rand_item != nil%>
             <div>
@@ -126,6 +154,7 @@
                   <input type="hidden" name="imageID" value="<%= @rand_item['imageID'] %>">
                   <input class="add-button" type="submit" value="Add to my collection">
                 </form>
+                <a href="/login-success" style="text-decoration: none;"><p>refresh</p></a>
               </div>
             </div>
           <%end%>

@@ -91,6 +91,7 @@
         color: white;
         border-radius: 15px;
         padding: 6px 10px;
+        margin-top: 50px;
         transition: background-color 0.4s;
       }
       .add-button:hover {
@@ -123,7 +124,7 @@
       .img-description h3 {
         margin: 0;
         font-weight: 50;
-        padding-bottom: 45px;
+        padding-bottom: 2px;
       }
   </style>
   </head>
@@ -153,7 +154,7 @@
                 <img class="art-img" src="https://framemark.vam.ac.uk/collections/<%=item['imageID']%>/full/!800,800/0/native.jpg">
                 <div class="img-description">  
                   <h2><%=item['name']%></h2>
-                  <h2><%=item['type']%></h2>
+                  <h3><%=item['type']%></h3>
                   <h3><%=item['date']%></h3>
                   <form action="/add-to-collection-within-search" method="POST">
                     <input type="hidden" name="name" value="<%= item['name'] %>">
