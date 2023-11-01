@@ -1,17 +1,25 @@
-## In development 
+## MyV&A 
 
+MyV&A is a website where users can view collections from the V&A API archive. They can search the archive, view random artefacts and save artefacts to their own collection.
 This project was created to practice using APIs and formatting data with CSS styling.
-More information coming soon.
+
+<img src="/Site-screenshot" style="width: 100vh; height: auto;"/>
 
 ### Tech
 
-languages: Ruby, HTML
+Design: Excalladraw, Figma
+Planning: Trello
+languages: Ruby, HTML, JavaScript
 Gems: sinatra, webrick, rspec, httparty
 Server: rack-test
 
-<!-- add link to V&A API -->
+#### Useful links
+
+V&A developer site: https://developers.vam.ac.uk
+V&A API guide: https://developers.vam.ac.uk/guide/v2/quick-start.html
+V&A API blog post: https://www.vam.ac.uk/blog/digital/va-launches-new-developer-api
+Introduction of integrating API data into websites: https://programminghistorian.org/en/lessons/introduction-to-populating-a-website-with-api-data
 JSON visualiser: https://jsonviewer.stack.hu 
-<!-- excalladraw, figma, trello for planning -->
 
 ### Run the project
 
@@ -24,10 +32,19 @@ $ bundle install
 
 # Start the server
 $ rackup
+
+In your browser, visit `http://localhost:9292` 
 ```
 
-Use your browser to visit `http://localhost:9292` 
+
+### Potential improvements
+
+- Option to remove artefacts from my collection
+- Option to display images from my collection as an image gallery
+- Add friends to view their collection
+- Multiple collections
+- Search filtering for different art mediums
 
 
-copyright compliance:
+Copyright compliance:
 © Victoria and Albert Museum, London
