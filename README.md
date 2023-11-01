@@ -39,7 +39,7 @@ $ bundle install
 # Start the server
 $ rackup
 
-#In your browser, visit `http://localhost:9292` 
+# In your browser, visit `http://localhost:9292` 
 ```
 <br/>
 <br/>
@@ -51,6 +51,7 @@ $ rackup
 - Add friends to view their collection
 - Multiple collections
 - Search filtering for different art mediums
+- Hidden password
 
 <br/>
 
