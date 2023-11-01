@@ -63,7 +63,10 @@ class Application < Sinatra::Base
 
     if params[:username] != "" || params[:email] != "" || params[:passkey] = !""
       repo.create(account)
-      return erb(:login_success)
+      session.clear
+      new_account = repo.find_by_username(params[:username])
+      session[:user_id] = new_account.id
+      redirect '/homepage'
     else
       puts "insufficient entry"
       redirect "/signup"
@@ -72,7 +75,7 @@ class Application < Sinatra::Base
 
   get '/login' do 
     if session[:user_id] != nil
-      erb(:login_success)
+      erb(:user_homepage)
     else
       return erb(:login)
     end
@@ -93,7 +96,7 @@ class Application < Sinatra::Base
         if session[:user_id] == nil
           return "no session"
         else
-          erb(:login_success)
+          redirect '/homepage'
         end
       else
         @error = "Password is incorrect, please try again"
@@ -114,9 +117,9 @@ class Application < Sinatra::Base
     return erb(:login)
   end
 
-  get '/login-success' do
+  get '/homepage' do
     @rand_item = randomiser()
-    return erb(:login_success)
+    return erb(:user_homepage)
   end
 
   get '/search' do 
@@ -160,7 +163,7 @@ class Application < Sinatra::Base
     if session[:user_id] != nil 
       add_to_collection(params)
     end
-    redirect "/login-success"
+    redirect "/homepage"
   end
 
   # post '/add-to-collection' do
