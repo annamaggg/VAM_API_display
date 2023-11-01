@@ -5,6 +5,13 @@
       margin: 0;
       padding: 0;
       }
+      .container {
+        display: flex;
+      }
+      .content {
+        padding: 50px;
+        top: 0;
+      }
       .icon {
         width: 120px;
         height: auto;
@@ -21,8 +28,8 @@
         background: none;
       }
       .navbar {
-        width: 300px;
-        height: 100%;
+        min-width: 300px;
+        height: 100vh;
         border-right: 2px solid lightgrey;
         position: relative;
       }
@@ -36,35 +43,94 @@
         color: black;
         font-size: 20px;
         font-family: Arial, sans-serif;
+        transition: 0.4s;
       }
-      .nav-text.hover {
+      .nav-text:hover {
         cursor: pointer;
+        color: salmon;
+      }
+      .logout-button {
+        border: none;
+        text-decoration: none;
+        color: grey;
+        position: absolute;
+        bottom: 60;
+        font-size: 20px;
+        background: none;
+        transition: 0.4s;
+      }
+      .logout-button:hover {
+        cursor: pointer;
+        color: salmon;
+      }
+      .art-img {
+        max-width: 50%;
+        border: 20px solid rgba(1, 0, 0, 0.84);
+        box-shadow: 4px 4px 4px 2px rgba(0, 0, 0, 0.5);
+      }
+      .image-container {
+        display: flex;
+        flex-wrap: wrap;
+      }
+      .image-container div {
+        flex-basis: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 30px 30px 60px 30px;
+      }
+      .img-description {
+        display: flex;
+        flex-direction: column;
+      }
+      h1 {
+        padding-left: 30px;
+      }
+      .img-description h2 {
+        margin: 0;
+        font-size: 25px;
+        padding-bottom: 5px;
+      }
+      .img-description h3 {
+        margin: 0;
+        font-weight: 50;
       }
     </style>
   </head>
   <body >
-    <div class="navbar">
-      <img class="icon" src='/myVA_icon2.png'/>
-      <div class="nav-panels">
-        <a class="nav-text" href="/login">Home</a><br>
-        <a class="nav-text" href="/my-collection">My collection</a><br>
-        <a class="nav-text" href="/search">Search the archive</a><br>
-        <form class="form" action="/logout" method="POST">
-          <input class="button" type="submit" name="submit" value="Logout"><br>
-        </form>
-      </div>
-    </div> 
-    <div class="image-container">
+    <div class="container">
+      <div class="navbar">
+        <img class="icon" src='/myVA_icon2.png'/>
+        <div class="nav-panels">
+          <a class="nav-text" href="/login-success">Home</a><br>
+          <a class="nav-text" href="/my-collection">My collection</a><br>
+          <a class="nav-text" href="/search">Search the archive</a><br>
+          <form class="form" action="/logout" method="POST">
+            <input class="logout-button" type="submit" name="submit" value="Logout"><br>
+          </form>
+        </div>
+      </div> 
+      <div class="content">
+        <div class="image-container">
           <%if @rand_item != nil%>
-              <div>
-                <img class="art-img" src="https://framemark.vam.ac.uk/collections/<%=@rand_item['imageID']%>/full/!800,800/0/native.jpg">
-                <div class="img-description">
-                  <h2><%=@rand_item['name']%></h2>
-                  <h3><%=@rand_item['type']%></h2>
-                  <h3><%=@rand_item['date']%></h3>
-                </div>
+            <div>
+              <img class="art-img" src="https://framemark.vam.ac.uk/collections/<%=@rand_item['imageID']%>/full/!800,800/0/native.jpg">
+              <div class="img-description">
+                <h2><%=@rand_item['name']%></h2>
+                <h3><%=@rand_item['type']%></h2>
+                <h3><%=@rand_item['date']%></h3>
+                <form action="/add-to-collection" method="POST">
+                  <input type="hidden" name="name" value="<%= @rand_item['name'] %>">
+                  <input type="hidden" name="type" value="<%= @rand_item['type'] %>">
+                  <input type="hidden" name="date" value="<%= @rand_item['date'] %>">
+                  <input type="hidden" name="imageID" value="<%= @rand_item['imageID'] %>">
+                  <input class="add-button" type="submit" value="Add to my collection">
+                </form>
               </div>
+            </div>
           <%end%>
         </div>
+      </div>
+    </div>
   </body>
 </html>

@@ -42,7 +42,7 @@ class Application < Sinatra::Base
     keyword = req_params[rand_search]
     search_results = search_req(keyword)
     rand_result = rand(0...(search_results.length))
-    # puts "your keyword is " + keyword + ", your search results are: " +  search_results.to_s + "your rand result number is: " + rand_result.to_s
+    puts "your keyword is " + keyword + ", your search results are: " +  search_results.to_s + "your rand result number is: " + rand_result.to_s
     return search_results[rand_result]
   end
 
@@ -88,7 +88,6 @@ class Application < Sinatra::Base
         if session[:user_id] == nil
           return "no session"
         else
-          # redirect '/login_success'
           erb(:login_success)
         end
       else
@@ -112,7 +111,6 @@ class Application < Sinatra::Base
 
   get '/login-success' do
     @rand_item = randomiser()
-    # @rand_item_list = 
     return erb(:login_success)
   end
 
@@ -130,35 +128,57 @@ class Application < Sinatra::Base
   end
 
   post '/search' do
-    
     session[:latest_keyword] = params[:keyword]
-    
     @item_list = search_req(params[:keyword])
-    
     return erb(:search)
+  end
+
+  def add_to_collection(params)
+    artefact_repo = ArtefactRepository.new
+    artefact = Artefact.new
+    artefact.title = params[:name]
+    artefact.object_type = params[:type]
+    artefact.time_period = params[:date]
+    artefact.image_id = params[:imageID]
+    artefact.account_id = session[:user_id]
+    artefact_repo.add_artefact(artefact)
+  end
+
+  post '/add-to-collection-within-search' do
+    if session[:user_id] != nil 
+      add_to_collection(params)
+    end
+    redirect "/search?keyword=#{session[:latest_keyword]}"
   end
 
   post '/add-to-collection' do
     if session[:user_id] != nil 
-      artefact_repo = ArtefactRepository.new
-      artefact = Artefact.new
-      artefact.title = params[:name]
-      artefact.object_type = params[:type]
-      artefact.time_period = params[:date]
-      artefact.image_id = params[:imageID]
-      artefact.account_id = session[:user_id]
-
-      artefact_repo.add_artefact(artefact)
+      add_to_collection(params)
     end
-    
-    redirect "/search?keyword=#{session[:latest_keyword]}"
+    redirect "/login-success"
   end
+
+  # post '/add-to-collection' do
+  #   if session[:user_id] != nil 
+  #     artefact_repo = ArtefactRepository.new
+  #     artefact = Artefact.new
+  #     artefact.title = params[:name]
+  #     artefact.object_type = params[:type]
+  #     artefact.time_period = params[:date]
+  #     artefact.image_id = params[:imageID]
+  #     artefact.account_id = session[:user_id]
+  #     artefact_repo.add_artefact(artefact)
+  #   end
+  #   redirect "/search?keyword=#{session[:latest_keyword]}"
+  # end
 
   get '/my-collection' do
     if session[:user_id] != nil 
       artefact_repo = ArtefactRepository.new
       @my_artefacts = artefact_repo.artefacts_by_account_id(session[:user_id])
       return erb(:my_collection)
+    else 
+      return erb(:login)
     end
   end
 
@@ -167,67 +187,67 @@ class Application < Sinatra::Base
   #   return erb(:index)
   # end
 
-  get '/search/London' do
-    location_req('q_place_name=London')
-  end
+  # get '/search/London' do
+  #   location_req('q_place_name=London')
+  # end
 
-  get '/search/Amsterdam' do
-    location_req('id_place=x28722')
-  end
+  # get '/search/Amsterdam' do
+  #   location_req('id_place=x28722')
+  # end
 
-  get '/search/NewYork' do
-    location_req('id_place=x29030')
-  end
+  # get '/search/NewYork' do
+  #   location_req('id_place=x29030')
+  # end
 
-  get '/search/Moscow' do
-    location_req('id_place=x32457')
-  end
+  # get '/search/Moscow' do
+  #   location_req('id_place=x32457')
+  # end
 
-  get '/search/Paris' do
-    location_req('id_place=x29068')
-  end
+  # get '/search/Paris' do
+  #   location_req('id_place=x29068')
+  # end
 
-  get '/search/Sydney' do
-    location_req('id_place=x37347')
-  end
+  # get '/search/Sydney' do
+  #   location_req('id_place=x37347')
+  # end
 
-  get '/search/CapeTown' do
-    location_req('id_place=x38584')
-  end
+  # get '/search/CapeTown' do
+  #   location_req('id_place=x38584')
+  # end
 
-  get '/search/Tokyo' do
-    location_req('id_place=x32204')
-  end
+  # get '/search/Tokyo' do
+  #   location_req('id_place=x32204')
+  # end
 
-  # material
+  # # material
 
-  get '/search/Wood' do
-    location_req('id_material=AAT11914')
-  end
+  # get '/search/Wood' do
+  #   location_req('id_material=AAT11914')
+  # end
 
-  get '/search/Marble' do
-    location_req('id_material=AAT11443')
-  end
+  # get '/search/Marble' do
+  #   location_req('id_material=AAT11443')
+  # end
 
-  get '/search/Silver' do
-    location_req('id_material=AAT11029')
-  end
+  # get '/search/Silver' do
+  #   location_req('id_material=AAT11029')
+  # end
 
-  get '/search/Plastic' do
-    location_req('id_material=AAT14570')
-  end
+  # get '/search/Plastic' do
+  #   location_req('id_material=AAT14570')
+  # end
 
-  get '/search/Gold' do
-    location_req('id_material=AAT11021')
-  end
+  # get '/search/Gold' do
+  #   location_req('id_material=AAT11021')
+  # end
 
-  get '/search/Bronze' do
-    location_req('id_material=AAT10957')
-  end
+  # get '/search/Bronze' do
+  #   location_req('id_material=AAT10957')
+  # end
 
-  get '/search/Paper' do
-    location_req('id_material=AAT14109')
-  end
+  # get '/search/Paper' do
+  #   location_req('id_material=AAT14109')
+  # end
 
 
 

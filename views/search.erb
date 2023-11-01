@@ -132,7 +132,7 @@
       <div class="navbar">
         <img class="icon" src='/myVA_icon2.png'/>
         <div class="nav-panels">
-          <a class="nav-text" href="/login">Home</a><br>
+          <a class="nav-text" href="/login-success">Home</a><br>
           <a class="nav-text" href="/my-collection">My collection</a><br>
           <a class="nav-text" href="/search">Search the archive</a><br>
           <form class="form" action="/logout" method="POST">
@@ -146,7 +146,6 @@
           <input class="search-box" type="text" id="keyword" name="keyword">
           <input class="search-button" type="submit" name="Search" value="Search"><br>
         </form>
-
         <div class="image-container">
           <%if @item_list != nil%>
             <%@item_list.each do |item|%>
@@ -156,15 +155,14 @@
                   <h2><%=item['name']%></h2>
                   <h2><%=item['type']%></h2>
                   <h3><%=item['date']%></h3>
-                  <form action="/add-to-collection" method="POST">
-                  <input type="hidden" name="name" value="<%= item['name'] %>">
-                  <input type="hidden" name="type" value="<%= item['type'] %>">
-                  <input type="hidden" name="date" value="<%= item['date'] %>">
-                  <input type="hidden" name="imageID" value="<%= item['imageID'] %>">
-                  <input class="add-button" type="submit" value="Add to my collection">
-                </form>
+                  <form action="/add-to-collection-within-search" method="POST">
+                    <input type="hidden" name="name" value="<%= item['name'] %>">
+                    <input type="hidden" name="type" value="<%= item['type'] %>">
+                    <input type="hidden" name="date" value="<%= item['date'] %>">
+                    <input type="hidden" name="imageID" value="<%= item['imageID'] %>">
+                    <input class="add-button" type="submit" value="Add to my collection">
+                  </form>
                 </div>
-                
               </div>
             <%end%>
           <%end%>
