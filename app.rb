@@ -38,10 +38,12 @@ class Application < Sinatra::Base
 
   def randomiser()
     req_params = ['gold', 'silver', 'wood', 'glass', 'marble', 'plastic', 'Queen Victoria', 'Prince Albert', 'book', 'poster', 'photograph', 'London', 'Tokyo', 'Amsterdam', 'New York', 'Moscow', 'Sydney', 'Paris']
-    rand_search = rand(0...(req_params.length - 1))
+    rand_search = rand(0...(req_params.length))
     keyword = req_params[rand_search]
     search_results = search_req(keyword)
-    return search_results.first(2)
+    rand_result = rand(0...(search_results.length))
+    # puts "your keyword is " + keyword + ", your search results are: " +  search_results.to_s + "your rand result number is: " + rand_result.to_s
+    return search_results[rand_result]
   end
 
   get '/' do 
@@ -109,7 +111,8 @@ class Application < Sinatra::Base
   end
 
   get '/login-success' do
-    @rand_item_list = randomiser()
+    @rand_item = randomiser()
+    # @rand_item_list = 
     return erb(:login_success)
   end
 

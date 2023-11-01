@@ -55,17 +55,15 @@
       </div>
     </div> 
     <div class="image-container">
-          <%if @rand_item_list != nil%>
-            <%@rand_item_list.each do |item|%>
+          <%if @rand_item != nil%>
               <div>
-                <img class="art-img" src="https://framemark.vam.ac.uk/collections/<%=item['imageID']%>/full/!800,800/0/native.jpg">
+                <img class="art-img" src="https://framemark.vam.ac.uk/collections/<%=@rand_item['imageID']%>/full/!800,800/0/native.jpg">
                 <div class="img-description">
-                  <h2><%=item['name']%></h2>
-                  <h3><%=item['type']%></h2>
-                  <h3><%=item['date']%></h3>
+                  <h2><%=@rand_item['name']%></h2>
+                  <h3><%=@rand_item['type']%></h2>
+                  <h3><%=@rand_item['date']%></h3>
                 </div>
               </div>
-            <%end%>
           <%end%>
         </div>
   </body>
