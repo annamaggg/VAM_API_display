@@ -52,6 +52,7 @@ $ rackup
 - Multiple collections
 - Search filtering for different art mediums
 - Hidden password
+- Acknowledgement that an item is added to my collection and removal of option to add again
 
 <br/>
 
