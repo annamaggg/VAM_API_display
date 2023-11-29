@@ -3,6 +3,8 @@
   <p>MyV&A is a website where users can view collections from the V&A API archive. They can    search the archive, view random artefacts and save artefacts to their own collection.<br/>This project was created to practice using APIs and formatting data with CSS styling.</p>
 
   <img src="https://github.com/annamaggg/VAM_API_display/blob/main/public/Site-screenshot.png" width="861" alt="img"/>
+  <img src="https://github.com/annamaggg/VAM_API_display/blob/main/public/Site-screenshot2.png" width="861" alt="img"/>
+  <img src="https://github.com/annamaggg/VAM_API_display/blob/main/public/Site-screenshot3.png" width="861" alt="img"/>
 </div>
 <br/>
 <br/>
